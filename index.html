@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DBA — Deeply Believing Agnostic | David Rickey · Counseling & Spiritual Care</title>
+<meta name="description" content="David Rickey offers compassionate counseling and spiritual care for people of all beliefs, backgrounds, and walks of life. Virtual and in-person sessions available. Nonprofit practice.">
+<meta property="og:title" content="DBA — Deeply Believing Agnostic">
+<meta property="og:description" content="Counseling that meets you where you are — spiritually, emotionally, and humanly.">
+<meta property="og:image" content="images/david-rickey.jpg">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════
+   DBA — DEEPLY BELIEVING AGNOSTIC
+   Design: Warm, vibrant, full of life
+   ══════════════════════════════════════════ */
+
+:root {
+  --coral: #E07B5A;
+  --coral-deep: #C96A4A;
+  --coral-glow: rgba(224,123,90,0.18);
+  --navy: #1A2744;
+  --navy-light: #243450;
+  --gold: #D4A574;
+  --gold-light: #F2E0CC;
+  --warm-bg: #FFFBF7;
+  --warm-cream: #FFF5EC;
+  --olive: #6B8B7A;
+  --olive-light: #E8F0EB;
+  --sand: #F5EDE4;
+  --text: #2D2522;
+  --text-soft: #6B615A;
+  --white: #FFFFFF;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--warm-bg);
+  color: var(--text);
+  font-weight: 400;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* ═══ NAV ═══ */
+nav {
+  position: fixed; top:0; left:0; right:0; z-index:100;
+  padding: 0 32px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+nav.scrolled {
+  background: rgba(255,251,247,0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+}
+.nav-inner {
+  max-width: 1200px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between;
+  height: 72px;
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -0.02em;
+  color: var(--navy); text-decoration:none;
+  display: flex; align-items: center; gap: 6px;
+}
+.nav-logo .logo-mark {
+  width: 36px; height: 36px;
+  background: linear-gradient(135deg, var(--coral), var(--gold));
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: white; font-size: 1.1rem; font-weight: 700;
+  animation: logoPulse 3s ease-in-out infinite;
+}
+@keyframes logoPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224,123,90,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(224,123,90,0); }
+}
+.nav-links { display:flex; gap: 32px; list-style:none; align-items:center; }
+.nav-links a {
+  text-decoration:none; color: var(--text-soft);
+  font-size: 0.875rem; font-weight: 500; letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--coral); }
+.nav-cta {
+  background: var(--coral); color: white;
+  padding: 10px 24px; border-radius: 25px;
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--coral-deep); transform: translateY(-1px); }
+
+/* ═══ SECTIONS ═══ */
+section { padding: 100px 32px; position: relative; }
+.section-inner { max-width: 1080px; margin: 0 auto; }
+
+/* ═══ HERO ═══ */
+.hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding-top: 80px;
+  background:
+    radial-gradient(ellipse at 75% 40%, rgba(224,123,90,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 25% 70%, rgba(212,165,116,0.10) 0%, transparent 50%),
+    linear-gradient(180deg, var(--warm-cream) 0%, var(--warm-bg) 100%);
+}
+.hero-grid {
+  max-width: 1200px; margin:0 auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+}
+.hero-text { position: relative; z-index: 2; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--coral);
+  margin-bottom: 28px;
+}
+.hero-badge::before {
+  content: ''; width: 24px; height: 2px;
+  background: var(--coral); border-radius: 1px;
+}
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 6.5vw, 5rem);
+  font-weight: 700; line-height: 1.1; letter-spacing: -0.02em;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+.hero h1 .accent {
+  color: var(--coral);
+  font-style: italic;
+}
+.hero .subtitle {
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  color: var(--text-soft); font-weight: 400;
+  max-width: 500px; line-height: 1.65;
+  margin-bottom: 36px;
+}
+.hero-buttons { display: flex; gap: 14px; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--coral); color: white;
+  padding: 15px 34px; border-radius: 28px;
+  font-size: 0.95rem; font-weight: 600; letter-spacing: 0.02em;
+  text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+  transition: all 0.25s;
+  border: none; cursor: pointer;
+}
+.btn-primary:hover { background: var(--coral-deep); transform: translateY(-2px); box-shadow: 0 8px 24px var(--coral-glow); }
+.btn-outline {
+  background: transparent; color: var(--navy);
+  border: 2px solid rgba(26,39,68,0.2);
+  padding: 15px 34px; border-radius: 28px;
+  font-size: 0.95rem; font-weight: 500; letter-spacing: 0.02em;
+  text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+  transition: all 0.25s;
+}
+.btn-outline:hover { border-color: var(--navy); background: rgba(26,39,68,0.03); }
+
+.hero-image-wrapper {
+  position: relative;
+}
+.hero-image {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+  position: relative; z-index: 2;
+}
+.hero-image-accent {
+  position: absolute;
+  top: -20px; right: -20px;
+  width: 160px; height: 160px;
+  background: linear-gradient(135deg, var(--coral), var(--gold));
+  border-radius: 24px;
+  z-index: 1;
+}
+.hero-image-accent2 {
+  position: absolute;
+  bottom: -16px; left: -24px;
+  width: 100px; height: 100px;
+  background: var(--olive-light);
+  border-radius: 20px;
+  z-index: 1;
+}
+
+/* ═══ PHILOSOPHY ═══ */
+.philosophy {
+  background: var(--navy);
+  color: white;
+  overflow: hidden;
+}
+.philosophy::before {
+  content: '';
+  position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
+  width: 120px; height: 120px;
+  background: var(--coral);
+  border-radius: 30px;
+  transform: translateX(-50%) rotate(45deg);
+  opacity: 0.15;
+}
+.phil-header { text-align: center; margin-bottom: 60px; position: relative; z-index: 1; }
+.phil-header .section-tag {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 16px;
+}
+.phil-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600; line-height: 1.3;
+  margin-bottom: 16px;
+}
+.phil-header p {
+  color: rgba(255,255,255,0.6); font-size: 1rem;
+  max-width: 550px; margin: 0 auto;
+}
+.phil-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 28px; max-width: 1000px; margin: 0 auto;
+  position: relative; z-index: 1;
+}
+.phil-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  transition: transform 0.25s, background 0.25s;
+}
+.phil-card:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.1);
+}
+.phil-card .phil-icon {
+  margin-bottom: 20px;
+}
+.phil-card .phil-icon svg {
+  width: 44px; height: 44px;
+}
+.phil-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem; font-weight: 600;
+  margin-bottom: 12px; color: white;
+}
+.phil-card p {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem; line-height: 1.65;
+}
+
+/* ═══ ABOUT ═══ */
+.about { background: var(--warm-bg); }
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 72px; align-items: center;
+}
+.about-image-wrap {
+  position: relative;
+}
+.about-img {
+  width: 100%; aspect-ratio: 3/4; object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+  position: relative; z-index: 2;
+}
+.about-img-accent {
+  position: absolute;
+  top: -16px; left: -16px;
+  width: 100%; height: 100%;
+  border: 2px solid var(--gold);
+  border-radius: var(--radius);
+  z-index: 1;
+}
+.about-text .section-tag {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--coral);
+  margin-bottom: 12px;
+}
+.about-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.6rem);
+  font-weight: 600; line-height: 1.2; letter-spacing: -0.01em;
+  color: var(--navy); margin-bottom: 24px;
+}
+.about-text p {
+  color: var(--text-soft); font-size: 0.95rem;
+  margin-bottom: 14px; line-height: 1.7;
+}
+.cred-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 14px; margin-top: 28px;
+}
+.cred-item {
+  background: var(--white);
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: var(--radius-sm);
+  padding: 16px 18px;
+}
+.cred-item .cred-label {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: var(--coral);
+  margin-bottom: 4px;
+}
+.cred-item .cred-value {
+  font-size: 0.85rem; font-weight: 500; color: var(--navy);
+  line-height: 1.4;
+}
+
+/* ═══ SERVICES ═══ */
+.services {
+  background: var(--warm-cream);
+  position: relative; overflow: hidden;
+}
+.services::after {
+  content: '';
+  position: absolute; bottom: -80px; right: -40px;
+  width: 260px; height: 260px;
+  background: var(--coral-glow);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.srv-header { text-align: center; margin-bottom: 56px; }
+.srv-header .section-tag {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--coral);
+  margin-bottom: 14px;
+}
+.srv-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600; color: var(--navy);
+  margin-bottom: 12px;
+}
+.srv-header p {
+  color: var(--text-soft); font-size: 1rem;
+  max-width: 520px; margin: 0 auto;
+}
+.srv-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; max-width: 1000px; margin: 0 auto;
+}
+.srv-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 30px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.05);
+  transition: all 0.3s;
+  position: relative; overflow: hidden;
+}
+.srv-card.featured {
+  border: 2px solid var(--coral);
+  box-shadow: 0 12px 40px var(--coral-glow);
+}
+.srv-card.featured::before {
+  content: 'Most Requested';
+  position: absolute; top: 14px; right: -28px;
+  background: var(--coral); color: white;
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.06em;
+  padding: 4px 36px;
+  transform: rotate(45deg);
+}
+.srv-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(0,0,0,0.08); }
+.srv-icon { margin-bottom: 22px; }
+.srv-icon svg { width: 52px; height: 52px; }
+.srv-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.2rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 12px;
+}
+.srv-card p {
+  color: var(--text-soft); font-size: 0.88rem;
+  line-height: 1.6;
+}
+.srv-badge {
+  display: inline-block; margin-top: 16px;
+  font-size: 0.72rem; font-weight: 600;
+  padding: 6px 16px; border-radius: 14px;
+  letter-spacing: 0.04em;
+  color: var(--olive); background: var(--olive-light);
+}
+.srv-note {
+  text-align: center; margin-top: 40px;
+  font-size: 0.92rem; color: var(--coral); font-weight: 600;
+}
+
+/* ═══ VIDEO ═══ */
+.video-section { background: var(--warm-bg); }
+.video-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+  max-width: 1080px; margin: 48px auto 0;
+}
+.video-player {
+  aspect-ratio: 16/9;
+  background: var(--navy);
+  border-radius: var(--radius);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.video-player .play-overlay {
+  width: 72px; height: 72px;
+  background: var(--coral);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: transform 0.25s;
+  box-shadow: 0 8px 32px rgba(224,123,90,0.4);
+}
+.video-player .play-overlay:hover { transform: scale(1.08); }
+.video-player .play-overlay svg { width: 28px; height: 28px; }
+.video-text .section-tag {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--coral);
+  margin-bottom: 12px;
+}
+.video-text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+  font-weight: 600; color: var(--navy);
+  margin-bottom: 20px;
+}
+.video-text p {
+  color: var(--text-soft); font-size: 0.95rem;
+  margin-bottom: 14px; line-height: 1.7;
+}
+.video-text .yt-link {
+  display: inline-flex; align-items: center; gap: 8px;
+  color: var(--coral); text-decoration: none;
+  font-weight: 600; font-size: 0.92rem;
+  margin-top: 8px;
+  transition: gap 0.2s;
+}
+.video-text .yt-link:hover { gap: 12px; }
+
+/* ═══ QUOTE ═══ */
+.quote-section {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  text-align: center; padding: 100px 32px;
+  position: relative; overflow: hidden;
+}
+.quote-section::before {
+  content: '"';
+  position: absolute; top: 10px; left: 50%; transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 18rem; color: rgba(255,255,255,0.03);
+  line-height: 1;
+}
+.quote-section blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+  font-style: italic; font-weight: 500;
+  max-width: 650px; margin: 0 auto;
+  line-height: 1.45; color: white;
+  position: relative; z-index: 1;
+}
+.quote-section cite {
+  display: block; margin-top: 24px;
+  font-family: var(--font-body);
+  font-size: 0.9rem; font-style: normal;
+  font-weight: 500; color: var(--gold);
+}
+
+/* ═══ SOCIAL ═══ */
+.social-strip {
+  background: var(--warm-cream);
+  text-align: center; padding: 60px 32px;
+}
+.social-strip h3 {
+  font-family: var(--font-display);
+  font-size: 1.6rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 24px;
+}
+.social-links {
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+}
+.social-link {
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 24px; border-radius: 26px;
+  text-decoration: none; font-weight: 500; font-size: 0.9rem;
+  transition: all 0.25s;
+}
+.social-link.facebook {
+  background: #1877F2; color: white;
+}
+.social-link.instagram {
+  background: linear-gradient(135deg, #F58529, #DD2A7B, #8134AF);
+  color: white;
+}
+.social-link.youtube {
+  background: #FF0000; color: white;
+}
+.social-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+.social-link svg { width: 20px; height: 20px; }
+
+/* ═══ CONTACT ═══ */
+.contact { background: var(--warm-bg); }
+.contact-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: start;
+  max-width: 1080px; margin: 48px auto 0;
+}
+.contact-header {
+  text-align: center; max-width: 500px; margin: 0 auto;
+}
+.contact-header .section-tag {
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--coral);
+  margin-bottom: 14px;
+}
+.contact-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 600; color: var(--navy);
+  margin-bottom: 12px;
+}
+.contact-header p {
+  color: var(--text-soft);
+}
+.contact-info p.lead {
+  color: var(--text-soft); font-size: 0.95rem;
+  margin-bottom: 28px; line-height: 1.7;
+}
+.contact-item {
+  display: flex; gap: 14px; align-items: flex-start;
+  margin-bottom: 20px;
+}
+.contact-item .ci-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-item .ci-icon.email-icon { background: var(--coral-glow); }
+.contact-item .ci-icon.phone-icon { background: var(--gold-light); }
+.contact-item .ci-icon.loc-icon { background: var(--olive-light); }
+.contact-item .ci-icon svg { width: 20px; height: 20px; }
+.contact-item strong {
+  display: block; color: var(--navy);
+  font-size: 0.88rem; margin-bottom: 2px;
+}
+.contact-item span {
+  color: var(--text-soft); font-size: 0.85rem;
+}
+
+/* Form */
+.contact-form-wrap {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 40px 32px;
+  border: 1px solid rgba(0,0,0,0.06);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.04);
+}
+.contact-form { display:flex; flex-direction:column; gap:14px; }
+.contact-form input,
+.contact-form select,
+.contact-form textarea {
+  width: 100%; padding: 14px 18px;
+  border: 1.5px solid rgba(0,0,0,0.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.9rem; color: var(--text);
+  background: var(--warm-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.contact-form input:focus,
+.contact-form select:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--coral);
+  box-shadow: 0 0 0 3px var(--coral-glow);
+}
+.contact-form textarea { min-height: 120px; resize: vertical; }
+.contact-form button {
+  background: var(--coral); color: white;
+  border: none; padding: 15px 32px; border-radius: 28px;
+  font-family: var(--font-body); font-size: 0.92rem;
+  font-weight: 600; letter-spacing: 0.02em;
+  cursor: pointer; transition: all 0.25s;
+  align-self: flex-start;
+}
+.contact-form button:hover {
+  background: var(--coral-deep);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px var(--coral-glow);
+}
+
+/* ═══ GIVE BACK ═══ */
+.give-section {
+  background: var(--warm-cream);
+  padding: 100px 32px;
+}
+.give-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; max-width: 1000px; margin: 0 auto;
+}
+.give-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 36px 28px;
+  text-align: center;
+  border: 1px solid var(--border);
+  transition: transform 0.25s, box-shadow 0.25s;
+}
+.give-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0,0,0,0.06);
+}
+.give-icon { margin-bottom: 20px; }
+.give-icon svg { width: 52px; height: 52px; }
+.give-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 12px;
+}
+.give-card p {
+  color: var(--text-soft); font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+/* ═══ SESSION MODAL ═══ */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,39,68,0.7);
+  backdrop-filter: blur(4px);
+  z-index: 200;
+  align-items: center; justify-content: center;
+  padding: 24px;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: var(--white);
+  border-radius: 20px;
+  padding: 44px 36px 36px;
+  max-width: 440px; width: 100%;
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.2);
+  animation: modalIn 0.3s ease;
+}
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-close {
+  position: absolute; top: 14px; right: 18px;
+  background: none; border: none;
+  font-size: 1.4rem; color: var(--text-soft);
+  cursor: pointer; padding: 6px; line-height: 1;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--coral); }
+.modal h3 {
+  font-family: var(--font-display);
+  font-size: 1.5rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 8px;
+}
+.modal .modal-sub {
+  color: var(--text-soft); font-size: 0.9rem;
+  margin-bottom: 24px; line-height: 1.6;
+}
+.modal label {
+  display: block; font-size: 0.8rem; font-weight: 600;
+  color: var(--navy); margin-bottom: 6px;
+  letter-spacing: 0.03em;
+}
+.modal input {
+  width: 100%; padding: 14px 18px;
+  border: 2px solid var(--border);
+  border-radius: 12px;
+  font-family: var(--font-body);
+  font-size: 0.95rem; color: var(--text);
+  background: var(--warm-bg);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  margin-bottom: 18px;
+}
+.modal input:focus {
+  outline: none; border-color: var(--coral);
+  box-shadow: 0 0 0 4px var(--coral-glow);
+}
+.modal .btn-primary { width: 100%; justify-content: center; }
+.modal .success-msg {
+  display: none; text-align: center; padding: 20px 0;
+}
+.modal .success-msg .check {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--green-light);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 16px;
+}
+.modal .success-msg h4 {
+  font-family: var(--font-display);
+  font-size: 1.2rem; color: var(--navy);
+  margin-bottom: 8px;
+}
+.modal .success-msg p {
+  color: var(--text-soft); font-size: 0.88rem;
+}
+
+/* ═══ FOOTER ═══ */
+footer {
+  background: var(--navy); color: rgba(255,255,255,0.5);
+  text-align: center; padding: 48px 32px 36px;
+}
+footer .ft-logo {
+  font-family: var(--font-display);
+  font-size: 1.4rem; font-weight: 700;
+  color: white; margin-bottom: 6px;
+}
+footer p { font-size: 0.8rem; margin-bottom: 2px; }
+footer .ft-links {
+  display: flex; gap: 24px; justify-content: center;
+  margin-top: 16px; flex-wrap: wrap;
+}
+footer .ft-links a {
+  color: rgba(255,255,255,0.5); text-decoration: none;
+  font-size: 0.8rem; transition: color 0.2s;
+}
+footer .ft-links a:hover { color: var(--gold); }
+
+/* ═══ MOBILE NAV ═══ */
+.hamburger {
+  display: none; background: none; border: none;
+  cursor: pointer; padding: 8px;
+  flex-direction: column; gap: 5px; z-index: 101;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2.5px;
+  background: var(--navy); border-radius: 2px;
+  transition: all 0.3s;
+}
+.hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 0; right: -100%;
+    width: 280px; height: 100vh;
+    background: var(--white);
+    flex-direction: column; gap: 0;
+    padding: 88px 28px 32px;
+    box-shadow: -8px 0 32px rgba(0,0,0,0.12);
+    transition: right 0.35s ease;
+    z-index: 100;
+  }
+  .nav-links.mobile-open { right: 0; }
+  .nav-links li { width: 100%; }
+  .nav-links a {
+    display: block; padding: 14px 0;
+    font-size: 1rem; border-bottom: 1px solid var(--border);
+  }
+  .nav-cta { padding: 10px 20px; font-size: 0.8rem; }
+  .nav-cta + .nav-cta { margin-left: 4px; }
+
+  section { padding: 60px 20px; }
+
+  .hero { min-height: auto; padding-top: 100px; padding-bottom: 60px; }
+  .hero-grid { grid-template-columns: 1fr; gap: 36px; text-align: center; }
+  .hero-image-wrapper { order: -1; max-width: 260px; margin: 0 auto; }
+  .hero h1 { font-size: 2.4rem; }
+  .hero .subtitle { max-width: 100%; margin-left: auto; margin-right: auto; font-size: 1rem; }
+  .hero-buttons { justify-content: center; }
+  .hero-image-accent, .hero-image-accent2 { display: none; }
+
+  .phil-grid { grid-template-columns: 1fr; gap: 20px; }
+  .phil-card { padding: 28px 22px; }
+
+  .srv-grid { grid-template-columns: 1fr; gap: 20px; }
+  .srv-card { padding: 32px 24px; }
+  .srv-card.featured::before { font-size: 0.58rem; top: 10px; right: -32px; padding: 3px 32px; }
+
+  .give-grid { grid-template-columns: 1fr; gap: 20px; }
+  .give-card { padding: 28px 22px; }
+  .donate-box > div { padding: 28px 22px !important; }
+
+  .about-grid { grid-template-columns: 1fr; gap: 36px; }
+  .about-image-wrap { max-width: 280px; margin: 0 auto; }
+  .about-img-accent { display: none; }
+  .about-text h2 { font-size: 2rem; }
+  .cred-grid { grid-template-columns: 1fr; }
+
+  .video-grid { grid-template-columns: 1fr; gap: 28px; }
+  .video-text h2 { font-size: 1.8rem; }
+
+  .contact-grid { grid-template-columns: 1fr; gap: 36px; }
+  .contact-form-wrap { padding: 28px 22px; }
+  .contact-item { gap: 12px; }
+
+  .social-links { flex-direction: column; align-items: center; }
+  .social-link { width: 100%; max-width: 280px; justify-content: center; }
+
+  .quote-section blockquote { font-size: 1.3rem; }
+  .quote-section { padding: 60px 24px; }
+
+  footer { padding: 36px 20px; }
+  footer .ft-links { gap: 14px; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2rem; }
+  .hero .subtitle { font-size: 0.92rem; }
+  .hero-badge { font-size: 0.7rem; }
+  .btn-primary, .btn-outline { padding: 13px 24px; font-size: 0.85rem; width: 100%; justify-content: center; }
+  .hero-buttons { flex-direction: column; width: 100%; }
+  .section-heading { font-size: 1.6rem; }
+  .phil-header h2 { font-size: 1.6rem; }
+  .phil-header p { font-size: 0.88rem; }
+  .about-text h2 { font-size: 1.7rem; }
+  .about-text p { font-size: 0.88rem; }
+  .srv-header h2 { font-size: 1.6rem; }
+  .srv-header p { font-size: 0.88rem; }
+  .video-text h2 { font-size: 1.5rem; }
+  .contact-header h2 { font-size: 1.6rem; }
+  .profile-detail { grid-template-columns: 1fr; }
+  .card-grid { grid-template-columns: 1fr; }
+  .dash-tabs { gap: 0; }
+  .dash-tab { padding: 10px 14px; font-size: 0.78rem; }
+  .msg-item { padding: 14px 16px; }
+  .resource-item { flex-wrap: wrap; }
+  .login-card { padding: 36px 24px; }
+}
+
+/* Overlay when mobile menu is open */
+.nav-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.3); z-index: 99;
+}
+.nav-overlay.show { display: block; }
+
+/* ═══ SCROLL ANIMATIONS ═══ */
+.fade-in {
+  opacity: 0; transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-in.visible {
+  opacity: 1; transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <span class="logo-mark">DB</span>
+      DBA
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-overlay" id="navOverlay"></div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#philosophy">Philosophy</a></li>
+      <li><a href="#about">About David</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#give">Give Back</a></li>
+      <li><a href="portal.html" style="color:var(--coral);font-weight:600;">Portal</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Reach Out</a>
+    <a href="#give" class="nav-cta" style="background:var(--gold); margin-left:8px;">Donate</a>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-text">
+      <div class="hero-badge">Nonprofit Counseling Practice</div>
+      <h1>Deeply<br><span class="accent">Believing</span><br>Agnostic</h1>
+      <p class="subtitle">
+        A space where faith and doubt share the same table.
+        Where you can be fully yourself — no matter what you believe,
+        what you question, or what you're carrying.
+      </p>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+          Schedule a Session
+        </a>
+        <a href="#philosophy" class="btn-outline">Learn More</a>
+      </div>
+    </div>
+    <div class="hero-image-wrapper">
+      <div class="hero-image-accent"></div>
+      <div class="hero-image-accent2"></div>
+      <img src="images/david-rickey.jpg" alt="David Rickey — Psychotherapist & Spiritual Counselor" class="hero-image">
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PHILOSOPHY ═══ -->
+<section class="philosophy" id="philosophy">
+  <div class="phil-header">
+    <div class="section-tag">The Heart of DBA</div>
+    <h2>Deeply believing. Honestly agnostic.</h2>
+    <p>It's not a contradiction — it's an invitation. The deepest faith doesn't demand certainty. It asks for presence.</p>
+  </div>
+  <div class="phil-grid">
+    <div class="phil-card fade-in">
+      <div class="phil-icon">
+        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="20" stroke="var(--coral)" stroke-width="2.5"/><path d="M24 14v20M14 24h20" stroke="var(--coral)" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Start Where You Are</h3>
+      <p>No prerequisites. No conversion. No "you should believe this." Just a real conversation about your actual life — the beautiful parts, the hard parts, and everything in between.</p>
+    </div>
+    <div class="phil-card fade-in">
+      <div class="phil-icon">
+        <svg viewBox="0 0 48 48" fill="none"><circle cx="24" cy="20" r="10" stroke="var(--gold)" stroke-width="2.5"/><path d="M12 42c0-8 5.4-14 12-14s12 6 12 14" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/></svg>
+      </div>
+      <h3>For Every Human</h3>
+      <p>Every background. Every identity. Every age. Every tradition — or none at all. If you're breathing and wondering, you belong here.</p>
+    </div>
+    <div class="phil-card fade-in">
+      <div class="phil-icon">
+        <svg viewBox="0 0 48 48" fill="none"><path d="M24 6v12M24 30v12M6 24h12M30 24h12" stroke="var(--olive)" stroke-width="2.5" stroke-linecap="round"/><circle cx="24" cy="24" r="6" stroke="var(--olive)" stroke-width="2.5"/></svg>
+      </div>
+      <h3>Room for Doubt &amp; Faith</h3>
+      <p>Bring your belief. Bring your doubt. Bring the anger you're afraid to admit you carry — or the hollow silence where certainty used to live. Bring your longing for meaning that won't quit, even when you wish it would. All of it fits here. None of it disqualifies you. The only requirement is showing up.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ABOUT ═══ -->
+<section class="about" id="about">
+  <div class="about-grid section-inner">
+    <div class="about-image-wrap">
+      <div class="about-img-accent"></div>
+      <img src="images/david-rickey.jpg" alt="David Rickey" class="about-img">
+    </div>
+    <div class="about-text">
+      <div class="section-tag">Who You're Talking To</div>
+      <h2>David Rickey</h2>
+      <p>
+        For over forty years, I've sat with people in their most vulnerable moments — as a priest, as a psychotherapist, and simply as a fellow human being trying to make sense of it all.
+      </p>
+      <p>
+        I trained in psychoanalytic psychotherapy at the Blainton-Peale Graduate Institute and earned my Master of Divinity from Union Theological Seminary. Those two paths — the clinical and the spiritual — have never been separate to me. They're different languages for the same thing: paying attention to what's actually happening inside a person.
+      </p>
+      <p>
+        I served as Rector of Trinity+St. Peter's Episcopal Church in San Francisco. Now, in this new chapter, I'm creating the space I always wished existed — one where therapy and soul-work aren't kept in separate rooms, and where no one is turned away because they can't afford help.</p>
+      <p style="margin-top:20px; padding:18px 20px; background:var(--coral-glow); border-radius:10px; font-size:0.9rem; color:var(--coral-deep); font-weight:500; line-height:1.6;">
+        <strong style="display:block;margin-bottom:4px;color:var(--coral);">✦ Why this is a nonprofit</strong>
+        Good counseling is expensive. Most people who need someone to talk to can't afford $150–$250 per session. Insurance often doesn't cover it, or the deductible makes it impossible. I've watched too many people suffer in silence because the math didn't work. DBA exists so that money isn't the reason you don't get help. Sliding scale, always. No one turned away.
+      </p>
+      <div class="cred-grid">
+        <div class="cred-item">
+          <div class="cred-label">Psychotherapy</div>
+          <div class="cred-value">Blainton-Peale Graduate Institute</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-label">Divinity</div>
+          <div class="cred-value">M.Div. · Union Theological Seminary</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-label">Philosophy</div>
+          <div class="cred-value">B.A. · Westminster College</div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-label">Ministry</div>
+          <div class="cred-value">Retired Rector · Trinity+St. Peter's, SF</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SERVICES ═══ -->
+<section class="services" id="services">
+  <div class="section-inner">
+    <div class="srv-header">
+      <div class="section-tag">How We Work Together</div>
+      <h2>Sessions that fit your life</h2>
+      <p>Whether you're in crisis, navigating a transition, or just need someone to talk to who won't hand you easy answers — there's a way to connect.</p>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card featured fade-in" onclick="openSessionModal('Virtual Sessions', 'Secure video sessions from anywhere. Once you submit, David will personally send you a private link to join.')" style="cursor:pointer;">
+        <div class="srv-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <rect x="4" y="8" width="48" height="32" rx="4" stroke="var(--coral)" stroke-width="2.5"/>
+            <line x1="28" y1="40" x2="28" y2="48" stroke="var(--coral)" stroke-width="2.5" stroke-linecap="round"/>
+            <line x1="20" y1="48" x2="36" y2="48" stroke="var(--coral)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>Virtual Sessions</h3>
+        <p>Meet from wherever you are. Secure, private video sessions that fit into your actual life. No commute, no waiting room — just a real conversation.</p>
+        <span class="srv-badge">Most Requested</span>
+        <div style="margin-top:12px;font-size:0.72rem;color:var(--coral);font-weight:500;opacity:0.7;">Click to request &rarr;</div>
+      </div>
+      <div class="srv-card fade-in" onclick="openSessionModal('In-Person', 'Face-to-face in a quiet, comfortable space. David will reach out to coordinate a time and location in the Atlanta area.')" style="cursor:pointer;">
+        <div class="srv-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <circle cx="20" cy="22" r="8" stroke="var(--navy)" stroke-width="2.5"/>
+            <circle cx="36" cy="22" r="8" stroke="var(--navy)" stroke-width="2.5"/>
+            <path d="M4 52c0-10 7.2-18 16-18s16 8 16 18" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <h3>In-Person</h3>
+        <p>For those who need presence in the room. Face-to-face sessions in a quiet, comfortable space where you can be fully seen and heard.</p>
+        <div style="margin-top:12px;font-size:0.72rem;color:var(--navy);font-weight:500;opacity:0.5;">Click to request &rarr;</div>
+      </div>
+      <div class="srv-card fade-in" onclick="openSessionModal('Spiritual Direction', 'A guided conversation about meaning and presence — not therapy, not church, something else entirely. David will send you details on how these sessions work.')" style="cursor:pointer;">
+        <div class="srv-icon">
+          <svg viewBox="0 0 56 56" fill="none">
+            <path d="M28 6v10" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M28 16c-6 0-12 4-12 12v8c0 4 3 8 8 8" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M28 16c6 0 12 4 12 12v8c0 4-3 8-8 8" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="28" cy="34" r="4" stroke="var(--gold)" stroke-width="2.5"/>
+          </svg>
+        </div>
+        <h3>Spiritual Direction</h3>
+        <p>Not therapy, not church — something else entirely. A guided conversation about meaning, presence, and where the sacred lives in your actual day-to-day.</p>
+        <div style="margin-top:12px;font-size:0.72rem;color:var(--gold);font-weight:500;opacity:0.6;">Click to request &rarr;</div>
+      </div>
+    </div>
+    <p class="srv-note">✦ Sliding scale available — this is a nonprofit practice ✦</p>
+  </div>
+</section>
+
+<!-- ═══ VIDEO ═══ -->
+<section class="video-section" id="videos">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-tag" style="font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--coral);margin-bottom:12px;">Conversations</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,2.8rem);font-weight:600;color:var(--navy);">David on YouTube</h2>
+  </div>
+  <div class="video-grid">
+    <div class="video-player">
+      <div class="play-overlay">
+        <svg viewBox="0 0 36 36" fill="white"><polygon points="12,8 30,18 12,28"/></svg>
+      </div>
+    </div>
+    <div class="video-text">
+      <div class="section-tag">New Videos Regularly</div>
+      <h2>Real talk about real life</h2>
+      <p>
+        David shares honest reflections on the things we all wrestle with — meaning, loss, connection, identity, faith, and the ordinary struggles of being human.
+      </p>
+      <p>
+        No polished sermons. No easy answers. Just someone who's spent decades listening, finally speaking.
+      </p>
+      <a href="https://youtube.com/@RickeyDavid" target="_blank" rel="noopener" class="yt-link">
+        Visit the Channel
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ QUOTE ═══ -->
+<section class="quote-section">
+  <blockquote>
+    "The goal is not to fix you. It's to sit with you long enough that you remember you were never broken."
+  </blockquote>
+  <cite>&mdash; David Rickey</cite>
+</section>
+
+<!-- ═══ GIVE BACK ═══ -->
+<section class="give-section" id="give">
+  <div class="section-inner" style="text-align:center;">
+    <div class="section-tag" style="font-size:0.75rem;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Humanitarian Work</div>
+    <h2 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,2.8rem);font-weight:600;color:var(--navy);margin-bottom:16px;">Beyond the counseling room</h2>
+    <p style="color:var(--text-soft);font-size:1rem;max-width:600px;margin:0 auto 48px;line-height:1.7;">
+      DBA isn't just about sessions. A big part of this work is showing up for people who can't afford help — the unhoused, families struggling to eat, kids who need someone in their corner. Every dollar you give goes directly to food, supplies, and direct care. No overhead. No middleman. Just people helping people.
+    </p>
+  </div>
+
+  <div class="give-grid">
+    <div class="give-card">
+      <div class="give-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <path d="M28 10v36M16 22h24" stroke="var(--coral)" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="28" cy="28" r="22" stroke="var(--coral)" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <h3>Feed Someone Today</h3>
+      <p>Hot meals, grocery runs, and food drops for people living on the streets. Even a few dollars puts a real meal in front of someone who hasn't eaten.</p>
+    </div>
+    <div class="give-card">
+      <div class="give-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <circle cx="20" cy="20" r="7" stroke="var(--navy)" stroke-width="2.5"/>
+          <circle cx="36" cy="20" r="7" stroke="var(--navy)" stroke-width="2.5"/>
+          <path d="M8 48c0-8 5.4-14 12-14" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M36 34c6.6 0 12 6 12 14" stroke="var(--navy)" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <h3>Kids &amp; Families</h3>
+      <p>School supplies, winter coats, backpacks, and direct support for children and families who are barely holding on. Sometimes it's the smallest things that change everything.</p>
+    </div>
+    <div class="give-card">
+      <div class="give-icon">
+        <svg viewBox="0 0 56 56" fill="none">
+          <rect x="6" y="16" width="44" height="32" rx="4" stroke="var(--gold)" stroke-width="2.5"/>
+          <path d="M20 16V10c0-3 2.5-5 5-5h6c3 0 5 2 5 5v6" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="28" cy="32" r="8" stroke="var(--gold)" stroke-width="2.5"/>
+        </svg>
+      </div>
+      <h3>Direct Supplies</h3>
+      <p>Blankets, hygiene kits, socks, first-aid — the basics that make surviving the street just a little more bearable. We buy in bulk and distribute directly.</p>
+    </div>
+  </div>
+
+  <div class="donate-box" style="text-align:center;margin-top:48px;">
+    <div style="max-width:500px;margin:0 auto;background:var(--white);border-radius:20px;padding:40px 36px;border:2px solid var(--gold);box-shadow:0 12px 40px rgba(212,165,116,0.15);">
+      <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--navy);margin-bottom:8px;">Make a Donation</div>
+      <p style="color:var(--text-soft);font-size:0.9rem;margin-bottom:24px;">100% goes to the work. Choose any method.</p>
+
+      <div style="display:flex;flex-direction:column;gap:12px;">
+        <a href="https://cash.app/$DBACounseling" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:#00D64F;color:white;border-radius:14px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/></svg>
+          Donate with Cash App
+        </a>
+        <a href="https://venmo.com/DBACounseling" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:#008CFF;color:white;border-radius:14px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9zm-9.65 1.83c-.57-.66-1.05-1.21-1.42-1.66-.25-.3-.46-.54-.63-.73s-.32-.36-.45-.52c-.14-.18-.25-.36-.33-.55-.07-.16-.12-.36-.12-.59 0-.45.14-.79.42-1.03.28-.24.66-.36 1.13-.36.36 0 .68.07.96.2.29.13.54.32.75.56.2.24.35.51.46.81.1.31.15.62.15.95h1.75c0-.62-.11-1.19-.32-1.71-.21-.52-.51-.96-.89-1.32-.39-.36-.84-.64-1.37-.83-.52-.19-1.09-.28-1.71-.28-.6 0-1.16.09-1.68.26-.52.18-.98.44-1.37.78-.39.35-.7.76-.92 1.25-.22.48-.33 1.03-.33 1.65 0 .49.07.94.22 1.34.15.39.34.74.56 1.05s.48.58.75.82c.27.24.54.46.81.66l1.78 1.34c.67.51 1.17.95 1.5 1.33.34.38.5.83.5 1.36 0 .34-.07.65-.22.92-.15.27-.35.51-.62.71-.27.2-.59.36-.96.47-.37.11-.77.17-1.21.17-.44 0-.84-.07-1.21-.21-.37-.14-.69-.33-.95-.58s-.47-.54-.61-.88c-.13-.34-.2-.69-.2-1.06h-1.74c0 .66.12 1.26.35 1.79.23.53.56.99.98 1.37.42.37.92.67 1.48.88.57.21 1.18.32 1.85.32.68 0 1.3-.11 1.87-.32.56-.21 1.05-.52 1.46-.91.41-.39.73-.85.95-1.39.22-.53.33-1.12.33-1.75 0-.56-.08-1.06-.25-1.48-.16-.42-.38-.79-.64-1.12-.26-.33-.55-.63-.88-.91z"/></svg>
+          Donate with Venmo
+        </a>
+        <a href="https://paypal.me/DBACounseling" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:#003087;color:white;border-radius:14px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24"><path d="M7.076 21.337H2.47a.641.641 0 01-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797H9.428c-.524 0-.971.38-1.063.9l-1.04 6.625-.024.16c-.029.187-.191.321-.39.321h.165z"/></svg>
+          Donate with PayPal
+        </a>
+      </div>
+      <p style="margin-top:18px;font-size:0.75rem;color:var(--text-soft);">
+        DBA is a nonprofit organization. All donations go directly to humanitarian work.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SOCIAL ═══ -->
+<section class="social-strip">
+  <h3>Connect With DBA</h3>
+  <div class="social-links">
+    <a href="https://facebook.com/" target="_blank" rel="noopener" class="social-link facebook">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+      Facebook
+    </a>
+    <a href="https://instagram.com/" target="_blank" rel="noopener" class="social-link instagram">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      Instagram
+    </a>
+    <a href="https://youtube.com/@RickeyDavid" target="_blank" rel="noopener" class="social-link youtube">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      YouTube
+    </a>
+  </div>
+</section>
+
+<!-- ═══ CONTACT ═══ -->
+<section class="contact" id="contact">
+  <div class="contact-header">
+    <div class="section-tag">Get In Touch</div>
+    <h2>Let's talk</h2>
+    <p>No pressure. No commitment. Just a conversation to see if this feels right.</p>
+  </div>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <p class="lead">
+        You don't need to know exactly what you're looking for. You just need to know you want something to change. Start there.
+      </p>
+      <div class="contact-item">
+        <div class="ci-icon email-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 4l-10 8L2 4"/></svg>
+        </div>
+        <div>
+          <strong>Email</strong>
+          <span>david@dba.org</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon phone-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        </div>
+        <div>
+          <strong>Phone</strong>
+          <span>+1 (716) 604-7034</span>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon loc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--olive)" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <strong>Location</strong>
+          <span>Atlanta, Georgia<br>+ Virtual (anywhere)</span>
+        </div>
+      </div>
+    </div>
+    <div class="contact-form-wrap">
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="contact">
+        <p style="display:none;"><input name="bot-field"></p>
+        <input type="text" name="name" placeholder="Your name" required>
+        <input type="email" name="email" placeholder="Your email" required>
+        <select name="interest">
+          <option value="">I'm interested in...</option>
+          <option value="virtual">Virtual counseling</option>
+          <option value="in-person">In-person counseling</option>
+          <option value="spiritual-direction">Spiritual direction</option>
+          <option value="just-talking">Just want to talk</option>
+        </select>
+        <textarea name="message" placeholder="Tell me a little about what's going on..."></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-logo">DBA</div>
+  <p>Deeply Believing Agnostic &mdash; Counseling &amp; Spiritual Care</p>
+  <p style="margin-top:4px;">A nonprofit practice. All are welcome.</p>
+  <div class="ft-links">
+    <a href="#philosophy">Philosophy</a>
+    <a href="#about">About David</a>
+    <a href="#services">Services</a>
+    <a href="#videos">Videos</a>
+    <a href="#give">Give Back</a>
+    <a href="#contact">Contact</a>
+  </div>
+</footer>
+
+<script>
+// Nav scroll effect
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// Mobile menu
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+const navOverlay = document.getElementById('navOverlay');
+
+function openMenu() {
+  hamburger.classList.add('open');
+  navLinks.classList.add('mobile-open');
+  navOverlay.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeMenu() {
+  hamburger.classList.remove('open');
+  navLinks.classList.remove('mobile-open');
+  navOverlay.classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.contains('open') ? closeMenu() : openMenu();
+});
+navOverlay.addEventListener('click', closeMenu);
+
+// Close menu when a nav link is clicked
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    if (navLinks.classList.contains('mobile-open')) closeMenu();
+  });
+});
+
+// Fade-in on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.15 });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ═══ SESSION MODAL ═══
+let currentService = '';
+
+function openSessionModal(service, description) {
+  currentService = service;
+  document.getElementById('modalServiceName').textContent = service;
+  document.getElementById('modalDescription').textContent = description;
+  document.getElementById('modalForm').style.display = 'block';
+  document.getElementById('modalSuccess').style.display = 'none';
+  document.getElementById('modalEmail').value = '';
+  document.getElementById('sessionModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeSessionModal() {
+  document.getElementById('sessionModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+function submitSessionRequest() {
+  const email = document.getElementById('modalEmail').value.trim();
+  if (!email || !email.includes('@')) {
+    document.getElementById('modalEmail').style.borderColor = '#D44';
+    return;
+  }
+  document.getElementById('modalEmail').style.borderColor = '';
+  document.getElementById('modalForm').style.display = 'none';
+  document.getElementById('modalSuccess').style.display = 'block';
+  document.getElementById('successService').textContent = currentService;
+  document.getElementById('successEmail').textContent = email;
+}
+
+document.getElementById('sessionModal').addEventListener('click', function(e) {
+  if (e.target === this) closeSessionModal();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeSessionModal();
+});
+</script>
+
+<!-- ═══ SESSION MODAL ═══ -->
+<div class="modal-overlay" id="sessionModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeSessionModal()">&times;</button>
+    <div id="modalForm">
+      <h3 id="modalServiceName">Virtual Sessions</h3>
+      <p class="modal-sub" id="modalDescription"></p>
+      <label for="modalEmail">Your email address</label>
+      <input type="email" id="modalEmail" placeholder="you@email.com" autocomplete="email">
+      <button class="btn-primary" onclick="submitSessionRequest()">Request a Link</button>
+    </div>
+    <div class="success-msg" id="modalSuccess">
+      <div class="check">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h4>Request sent</h4>
+      <p>David will send your <strong id="successService">session</strong> link to <strong id="successEmail"></strong> within 24 hours. Keep an eye on your inbox.</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

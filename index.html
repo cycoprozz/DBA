@@ -77,8 +77,13 @@ nav.scrolled {
   display: flex; align-items: center; gap: 10px;
 }
 .nav-logo-img {
-  height: 36px; width: auto;
+  height: 48px; width: auto;
   display: block;
+  animation: logoPulse 3s ease-in-out infinite;
+}
+@keyframes logoPulse {
+  0%, 100% { filter: drop-shadow(0 0 0 rgba(224,123,90,0)); }
+  50% { filter: drop-shadow(0 0 6px rgba(224,123,90,0.4)); }
 }
 .nav-logo .logo-mark {
   width: 36px; height: 36px;
@@ -772,7 +777,7 @@ footer .ft-links a:hover { color: var(--gold); }
   }
   .nav-cta { padding: 10px 20px; font-size: 0.8rem; }
   .nav-cta + .nav-cta { margin-left: 4px; }
-  .nav-logo-img { height: 28px; }
+  .nav-logo-img { height: 38px; }
 
   section { padding: 60px 20px; }
 

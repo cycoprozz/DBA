@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 /* ══════════════════════════════════════════
    DBA — DEEPLY BELIEVING AGNOSTIC
@@ -1230,7 +1231,7 @@ footer .ft-links a:hover { color: var(--gold); }
       </div>
     </div>
     <div class="contact-form-wrap">
-      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+      <form class="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="handleContactSubmit(event)">
         <input type="hidden" name="form-name" value="contact">
         <p style="display:none;"><input name="bot-field"></p>
         <input type="text" name="name" placeholder="Your name" required>
@@ -1264,6 +1265,12 @@ footer .ft-links a:hover { color: var(--gold); }
 </footer>
 
 <script>
+// ═══ Supabase config (replace with your credentials) ═══
+const SB_URL = 'https://YOUR-PROJECT-ID.supabase.co';
+const SB_KEY = 'your-anon-key-here';
+let sb = null;
+try { if (!SB_URL.includes('YOUR-PROJECT')) sb = window.supabase.createClient(SB_URL, SB_KEY); } catch(e) {}
+
 // Nav scroll effect
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -1337,6 +1344,15 @@ function submitSessionRequest() {
     return;
   }
   document.getElementById('modalEmail').style.borderColor = '';
+
+  // Send to Supabase if configured
+  if (sb) {
+    const typeMap = { 'Virtual Sessions': 'virtual', 'In-Person': 'in-person', 'Spiritual Direction': 'spiritual-direction' };
+    sb.from('session_requests').insert({ email, service_type: typeMap[currentService] || 'virtual' }).then(r => {
+      if (r.error) console.warn('Session request save error:', r.error);
+    });
+  }
+
   document.getElementById('modalForm').style.display = 'none';
   document.getElementById('modalSuccess').style.display = 'block';
   document.getElementById('successService').textContent = currentService;
@@ -1349,6 +1365,25 @@ document.getElementById('sessionModal').addEventListener('click', function(e) {
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeSessionModal();
 });
+
+// ═══ CONTACT FORM → SUPABASE ═══
+function handleContactSubmit(e) {
+  if (!sb) return; // Let Netlify Forms handle it
+  e.preventDefault();
+  const form = e.target;
+  const data = {
+    name: form.querySelector('[name="name"]').value,
+    email: form.querySelector('[name="email"]').value,
+    interest: form.querySelector('[name="interest"]').value,
+    message: form.querySelector('[name="message"]').value
+  };
+  sb.from('contact_submissions').insert(data).then(r => {
+    if (r.error) console.warn('Contact save error:', r.error);
+  });
+  form.reset();
+  form.querySelector('button').textContent = 'Sent! ✓';
+  setTimeout(() => { form.querySelector('button').textContent = 'Send Message'; }, 3000);
+}
 </script>
 
 <!-- ═══ SESSION MODAL ═══ -->

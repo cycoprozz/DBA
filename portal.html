@@ -6,425 +6,203 @@
 <title>Client Portal — DBA Counseling</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 :root {
-  --coral: #E07B5A;
-  --coral-deep: #C96A4A;
-  --coral-glow: rgba(224,123,90,0.15);
-  --navy: #1A2744;
-  --gold: #D4A574;
-  --gold-light: #F2E0CC;
-  --warm-bg: #FFFBF7;
-  --white: #FFFFFF;
-  --text: #2D2522;
-  --text-soft: #6B615A;
-  --border: rgba(0,0,0,0.08);
-  --radius: 14px;
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', -apple-system, sans-serif;
-  --green: #5B9A6F;
-  --green-light: #E8F5EC;
-  --amber: #D4A03C;
-  --amber-light: #FDF6E8;
+  --coral: #E07B5A; --coral-deep: #C96A4A; --coral-glow: rgba(224,123,90,0.15);
+  --navy: #1A2744; --gold: #D4A574; --gold-light: #F2E0CC;
+  --warm-bg: #FFFBF7; --white: #FFFFFF; --text: #2D2522; --text-soft: #6B615A;
+  --border: rgba(0,0,0,0.08); --radius: 14px; --green: #5B9A6F; --green-light: #E8F5EC;
+  --font-display: 'Playfair Display', Georgia, serif; --font-body: 'Inter', -apple-system, sans-serif;
 }
-
 * { margin:0; padding:0; box-sizing:border-box; }
-body {
-  font-family: var(--font-body);
-  background: var(--warm-bg);
-  color: var(--text);
-  line-height: 1.6;
-  min-height: 100vh;
-}
+body { font-family:var(--font-body); background:var(--warm-bg); color:var(--text); line-height:1.6; min-height:100vh; }
+a { color:var(--coral); }
 
-/* ═══ LOGIN SCREEN ═══ */
-.login-screen {
-  min-height: 100vh;
-  display: flex; align-items: center; justify-content: center;
-  background: radial-gradient(ellipse at 60% 30%, rgba(224,123,90,0.08) 0%, transparent 60%),
-              linear-gradient(180deg, #FFF5EC 0%, var(--warm-bg) 100%);
-  padding: 32px;
+/* ═══ LOGIN / SIGNUP ═══ */
+.auth-screen {
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  background:radial-gradient(ellipse at 60% 30%, rgba(224,123,90,0.08) 0%, transparent 60%),
+            linear-gradient(180deg, #FFF5EC 0%, var(--warm-bg) 100%);
+  padding:32px;
 }
-.login-card {
-  background: var(--white);
-  border-radius: 20px;
-  padding: 48px 40px;
-  width: 100%; max-width: 420px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.08);
-  border: 1px solid var(--border);
-  text-align: center;
+.auth-card {
+  background:var(--white); border-radius:20px; padding:48px 40px;
+  width:100%; max-width:420px; box-shadow:0 20px 60px rgba(0,0,0,0.08);
+  border:1px solid var(--border); text-align:center;
 }
-.login-logo {
-  font-family: var(--font-display);
-  font-size: 2rem; font-weight: 800;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-.login-logo .mark {
-  display: inline-flex; align-items: center; justify-content: center;
-  width: 48px; height: 48px;
-  background: linear-gradient(135deg, var(--coral), var(--gold));
-  border-radius: 12px; color: white;
-  font-size: 1.3rem; font-weight: 700;
-  margin-bottom: 12px;
-  animation: logoPulse 3s ease-in-out infinite;
-}
-@keyframes logoPulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(224,123,90,0.4); }
-  50% { box-shadow: 0 0 0 10px rgba(224,123,90,0); }
-}
-.login-card h1 {
-  font-family: var(--font-display);
-  font-size: 1.5rem; font-weight: 600;
-  color: var(--navy); margin-bottom: 6px;
-}
-.login-card .sub {
-  color: var(--text-soft); font-size: 0.88rem;
-  margin-bottom: 32px;
-}
-.login-card label {
-  display: block; text-align: left;
-  font-size: 0.8rem; font-weight: 600;
-  color: var(--navy); margin-bottom: 6px;
-  letter-spacing: 0.03em;
-}
-.login-card input {
-  width: 100%; padding: 14px 18px;
-  border: 2px solid var(--border);
-  border-radius: 12px;
-  font-family: var(--font-body);
-  font-size: 1rem; color: var(--text);
-  background: var(--warm-bg);
-  transition: border-color 0.2s, box-shadow 0.2s;
-  text-align: center; letter-spacing: 0.15em;
-}
-.login-card input:focus {
-  outline: none; border-color: var(--coral);
-  box-shadow: 0 0 0 4px var(--coral-glow);
-}
-.login-card button {
-  width: 100%; margin-top: 20px;
-  padding: 15px;
-  background: var(--coral); color: white;
-  border: none; border-radius: 28px;
-  font-family: var(--font-body);
-  font-size: 0.95rem; font-weight: 600;
-  letter-spacing: 0.03em; cursor: pointer;
-  transition: all 0.25s;
-}
-.login-card button:hover {
-  background: var(--coral-deep);
-  transform: translateY(-1px);
-  box-shadow: 0 8px 24px var(--coral-glow);
-}
-.login-error {
-  color: #D44; font-size: 0.82rem;
-  margin-top: 10px; display: none;
-}
-.login-help {
-  margin-top: 20px; font-size: 0.78rem;
-  color: var(--text-soft);
-}
-.login-help a { color: var(--coral); font-weight: 500; text-decoration: none; }
-.login-back {
-  display: inline-block; margin-top: 20px;
-  color: var(--text-soft); font-size: 0.82rem;
-  text-decoration: none; transition: color 0.2s;
-}
-.login-back:hover { color: var(--coral); }
+.auth-logo { font-family:var(--font-display); font-size:2rem; font-weight:800; color:var(--navy); margin-bottom:4px; }
+.auth-logo .mark { display:inline-flex; align-items:center; justify-content:center;
+  width:48px; height:48px; background:linear-gradient(135deg, var(--coral), var(--gold));
+  border-radius:12px; color:white; font-size:1.3rem; font-weight:700;
+  margin-bottom:12px; animation:logoPulse 3s ease-in-out infinite; }
+@keyframes logoPulse { 0%,100%{box-shadow:0 0 0 0 rgba(224,123,90,0.4)} 50%{box-shadow:0 0 0 10px rgba(224,123,90,0)} }
+.auth-card h1 { font-family:var(--font-display); font-size:1.5rem; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.auth-card .sub { color:var(--text-soft); font-size:0.88rem; margin-bottom:28px; }
+.auth-card label { display:block; text-align:left; font-size:0.8rem; font-weight:600; color:var(--navy); margin-bottom:5px; letter-spacing:0.03em; }
+.auth-card input { width:100%; padding:14px 18px; border:2px solid var(--border); border-radius:12px;
+  font-family:var(--font-body); font-size:0.95rem; color:var(--text); background:var(--warm-bg);
+  margin-bottom:14px; transition:border-color 0.2s, box-shadow 0.2s; }
+.auth-card input:focus { outline:none; border-color:var(--coral); box-shadow:0 0 0 4px var(--coral-glow); }
+.auth-card button { width:100%; margin-top:8px; padding:15px; background:var(--coral); color:white;
+  border:none; border-radius:28px; font-family:var(--font-body); font-size:0.95rem; font-weight:600;
+  letter-spacing:0.03em; cursor:pointer; transition:all 0.25s; }
+.auth-card button:hover { background:var(--coral-deep); transform:translateY(-1px); box-shadow:0 8px 24px var(--coral-glow); }
+.auth-card button:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+.auth-error { color:#D44; font-size:0.82rem; margin-top:8px; display:none; }
+.auth-toggle { margin-top:18px; font-size:0.82rem; color:var(--text-soft); }
+.auth-toggle a { cursor:pointer; font-weight:600; }
+.auth-back { display:inline-block; margin-top:18px; color:var(--text-soft); font-size:0.82rem; text-decoration:none; }
+.auth-back:hover { color:var(--coral); }
 
 /* ═══ DASHBOARD ═══ */
-.dashboard { display: none; min-height: 100vh; }
-.dash-nav {
-  background: var(--navy); color: white;
-  padding: 0 32px;
-}
-.dash-nav-inner {
-  max-width: 1200px; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
-  height: 64px;
-}
-.dash-logo {
-  font-family: var(--font-display);
-  font-size: 1.25rem; font-weight: 700;
-  display: flex; align-items: center; gap: 8px;
-}
-.dash-logo .dmark {
-  width: 32px; height: 32px;
-  background: linear-gradient(135deg, var(--coral), var(--gold));
-  border-radius: 8px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 0.9rem; font-weight: 700;
-  animation: logoPulse 3s ease-in-out infinite;
-}
-.dash-user {
-  display: flex; align-items: center; gap: 12px;
-  font-size: 0.85rem;
-}
-.dash-avatar {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--coral);
-  display: flex; align-items: center; justify-content: center;
-  font-weight: 600; font-size: 0.9rem;
-}
-.dash-logout {
-  background: rgba(255,255,255,0.1); color: white;
-  border: 1px solid rgba(255,255,255,0.2);
-  padding: 6px 16px; border-radius: 20px;
-  font-size: 0.78rem; font-weight: 500;
-  cursor: pointer; transition: background 0.2s;
-}
-.dash-logout:hover { background: rgba(255,255,255,0.2); }
+.dashboard { display:none; min-height:100vh; }
+.dash-nav { background:var(--navy); color:white; padding:0 32px; }
+.dash-nav-inner { max-width:1200px; margin:0 auto; display:flex; align-items:center; justify-content:space-between; height:64px; }
+.dash-logo { font-family:var(--font-display); font-size:1.25rem; font-weight:700; display:flex; align-items:center; gap:8px; }
+.dash-logo .dmark { width:32px; height:32px; background:linear-gradient(135deg, var(--coral), var(--gold));
+  border-radius:8px; display:flex; align-items:center; justify-content:center;
+  font-size:0.9rem; font-weight:700; animation:logoPulse 3s ease-in-out infinite; }
+.dash-user { display:flex; align-items:center; gap:12px; font-size:0.85rem; }
+.dash-avatar { width:36px; height:36px; border-radius:50%; background:var(--coral);
+  display:flex; align-items:center; justify-content:center; font-weight:600; font-size:0.9rem; }
+.dash-logout { background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.2);
+  padding:6px 16px; border-radius:20px; font-size:0.78rem; font-weight:500; cursor:pointer; }
+.dash-logout:hover { background:rgba(255,255,255,0.2); }
 
-.dash-body {
-  max-width: 1200px; margin: 0 auto; padding: 36px 32px;
-}
-.dash-header {
-  margin-bottom: 32px;
-}
-.dash-header h2 {
-  font-family: var(--font-display);
-  font-size: 1.8rem; font-weight: 600;
-  color: var(--navy);
-}
-.dash-header p { color: var(--text-soft); font-size: 0.9rem; }
+.dash-body { max-width:1200px; margin:0 auto; padding:36px 32px; }
+.dash-header { margin-bottom:32px; }
+.dash-header h2 { font-family:var(--font-display); font-size:1.8rem; font-weight:600; color:var(--navy); }
+.dash-header p { color:var(--text-soft); font-size:0.9rem; }
+.dash-tabs { display:flex; gap:4px; margin-bottom:28px; border-bottom:2px solid var(--border); }
+.dash-tab { padding:10px 24px; font-size:0.85rem; font-weight:500; color:var(--text-soft);
+  cursor:pointer; border:none; background:none; font-family:var(--font-body);
+  border-bottom:2px solid transparent; margin-bottom:-2px; transition:all 0.2s; }
+.dash-tab:hover { color:var(--navy); }
+.dash-tab.active { color:var(--coral); border-bottom-color:var(--coral); font-weight:600; }
+.tab-badge { display:inline-block; margin-left:6px; background:var(--coral); color:white;
+  font-size:0.65rem; font-weight:700; padding:2px 7px; border-radius:8px; min-width:18px; text-align:center; }
+.tab-panel { display:none; }
+.tab-panel.active { display:block; }
 
-/* Tabs */
-.dash-tabs {
-  display: flex; gap: 4px; margin-bottom: 28px;
-  border-bottom: 2px solid var(--border);
-  padding-bottom: 0;
-}
-.dash-tab {
-  padding: 10px 24px;
-  font-size: 0.85rem; font-weight: 500;
-  color: var(--text-soft); cursor: pointer;
-  border: none; background: none;
-  font-family: var(--font-body);
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  transition: all 0.2s;
-}
-.dash-tab:hover { color: var(--navy); }
-.dash-tab.active {
-  color: var(--coral); border-bottom-color: var(--coral);
-  font-weight: 600;
-}
-.tab-badge {
-  display: inline-block; margin-left: 6px;
-  background: var(--coral); color: white;
-  font-size: 0.65rem; font-weight: 700;
-  padding: 2px 7px; border-radius: 8px;
-  min-width: 18px; text-align: center;
-}
+.card-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(340px,1fr)); gap:20px; }
+.card { background:var(--white); border-radius:var(--radius); padding:24px; border:1px solid var(--border); }
+.card .card-tag { display:inline-block; font-size:0.68rem; font-weight:600; letter-spacing:0.06em;
+  text-transform:uppercase; padding:4px 10px; border-radius:6px; margin-bottom:12px; }
+.card .card-tag.upcoming { background:var(--green-light); color:var(--green); }
+.card .card-tag.today { background:var(--coral-glow); color:var(--coral); }
+.card h4 { font-family:var(--font-display); font-size:1.1rem; font-weight:600; color:var(--navy); margin-bottom:8px; }
+.card .card-date { font-size:0.82rem; color:var(--text-soft); margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.card .card-actions { margin-top:14px; display:flex; gap:10px; }
+.btn-sm { padding:8px 18px; border-radius:20px; font-size:0.78rem; font-weight:500;
+  text-decoration:none; cursor:pointer; border:none; font-family:var(--font-body); transition:all 0.2s; }
+.btn-sm.primary { background:var(--coral); color:white; }
+.btn-sm.primary:hover { background:var(--coral-deep); }
+.btn-sm.outline { background:transparent; color:var(--navy); border:1.5px solid rgba(0,0,0,0.15); }
+.btn-sm.outline:hover { border-color:var(--coral); color:var(--coral); }
 
-/* Tab panels */
-.tab-panel { display: none; }
-.tab-panel.active { display: block; }
+.empty-state { text-align:center; padding:48px 24px; color:var(--text-soft); }
+.empty-state .empty-icon { font-size:2.5rem; margin-bottom:12px; opacity:0.5; }
+.empty-state h4 { font-family:var(--font-display); font-size:1.1rem; color:var(--navy); margin-bottom:6px; }
+.empty-state p { font-size:0.85rem; }
 
-/* Cards */
-.card-grid {
-  display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 20px;
-}
-.card {
-  background: var(--white);
-  border-radius: var(--radius);
-  padding: 24px;
-  border: 1px solid var(--border);
-  transition: box-shadow 0.25s;
-}
-.card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.06); }
-.card .card-tag {
-  display: inline-block;
-  font-size: 0.68rem; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  padding: 4px 10px; border-radius: 6px;
-  margin-bottom: 12px;
-}
-.card .card-tag.upcoming { background: var(--green-light); color: var(--green); }
-.card .card-tag.today { background: var(--coral-glow); color: var(--coral); }
-.card .card-tag.past { background: #F0F0F0; color: #999; }
-.card h4 {
-  font-family: var(--font-display);
-  font-size: 1.1rem; font-weight: 600;
-  color: var(--navy); margin-bottom: 8px;
-}
-.card .card-date {
-  font-size: 0.82rem; color: var(--text-soft);
-  margin-bottom: 6px;
-  display: flex; align-items: center; gap: 6px;
-}
-.card .card-date svg { width: 14px; height: 14px; opacity: 0.5; }
-.card .card-actions { margin-top: 14px; display: flex; gap: 10px; }
-.btn-sm {
-  padding: 8px 18px; border-radius: 20px;
-  font-size: 0.78rem; font-weight: 500;
-  text-decoration: none; cursor: pointer;
-  border: none; font-family: var(--font-body);
-  transition: all 0.2s;
-}
-.btn-sm.primary { background: var(--coral); color: white; }
-.btn-sm.primary:hover { background: var(--coral-deep); }
-.btn-sm.outline {
-  background: transparent; color: var(--navy);
-  border: 1.5px solid rgba(0,0,0,0.15);
-}
-.btn-sm.outline:hover { border-color: var(--coral); color: var(--coral); }
+.msg-item { padding:16px 20px; background:var(--white); border-radius:var(--radius); border:1px solid var(--border); margin-bottom:12px; }
+.msg-item.unread { border-left:3px solid var(--coral); }
+.msg-item .msg-from { font-weight:600; font-size:0.88rem; color:var(--navy); margin-bottom:4px; }
+.msg-item .msg-preview { font-size:0.82rem; color:var(--text-soft); }
+.msg-item .msg-date { font-size:0.72rem; color:#AAA; margin-top:4px; }
 
-/* Empty state */
-.empty-state {
-  text-align: center; padding: 48px 24px;
-  color: var(--text-soft);
-}
-.empty-state .empty-icon {
-  font-size: 2.5rem; margin-bottom: 12px; opacity: 0.5;
-}
-.empty-state h4 {
-  font-family: var(--font-display);
-  font-size: 1.1rem; color: var(--navy);
-  margin-bottom: 6px;
-}
-.empty-state p { font-size: 0.85rem; }
+.resource-item { display:flex; align-items:center; gap:14px; padding:14px 18px;
+  background:var(--white); border-radius:var(--radius); border:1px solid var(--border); margin-bottom:10px; }
+.resource-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.resource-icon.doc { background:var(--coral-glow); }
+.resource-icon.video { background:var(--green-light); }
+.resource-icon.audio { background:var(--gold-light); }
+.resource-info { flex:1; }
+.resource-info .r-name { font-weight:600; font-size:0.88rem; color:var(--navy); margin-bottom:2px; }
+.resource-info .r-desc { font-size:0.78rem; color:var(--text-soft); }
 
-/* Messages */
-.msg-item {
-  padding: 16px 20px;
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  margin-bottom: 12px;
-  transition: box-shadow 0.2s;
-}
-.msg-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-.msg-item.unread { border-left: 3px solid var(--coral); }
-.msg-item .msg-from {
-  font-weight: 600; font-size: 0.88rem;
-  color: var(--navy); margin-bottom: 4px;
-}
-.msg-item .msg-preview {
-  font-size: 0.82rem; color: var(--text-soft);
-}
-.msg-item .msg-date {
-  font-size: 0.72rem; color: #AAA;
-  margin-top: 4px;
-}
+.profile-card { background:var(--white); border-radius:var(--radius); border:1px solid var(--border); padding:28px; }
+.profile-header { display:flex; align-items:center; gap:16px; margin-bottom:24px; }
+.profile-avatar { width:64px; height:64px; border-radius:50%;
+  background:linear-gradient(135deg, var(--coral), var(--gold));
+  display:flex; align-items:center; justify-content:center;
+  font-size:1.5rem; font-weight:700; color:white; flex-shrink:0; }
+.profile-name { font-family:var(--font-display); font-size:1.3rem; font-weight:600; color:var(--navy); }
+.profile-email { color:var(--text-soft); font-size:0.85rem; }
+.profile-detail { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:20px; }
+.profile-field label { display:block; font-size:0.7rem; font-weight:600; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--text-soft); margin-bottom:4px; }
+.profile-field .val { font-size:0.9rem; color:var(--navy); font-weight:500; }
 
-/* Resources */
-.resource-item {
-  display: flex; align-items: center; gap: 14px;
-  padding: 14px 18px;
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  margin-bottom: 10px;
-  transition: box-shadow 0.2s;
-}
-.resource-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.04); }
-.resource-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.resource-icon.doc { background: var(--coral-glow); }
-.resource-icon.video { background: var(--green-light); }
-.resource-icon.audio { background: var(--amber-light); }
-.resource-info { flex: 1; }
-.resource-info .r-name {
-  font-weight: 600; font-size: 0.88rem;
-  color: var(--navy); margin-bottom: 2px;
-}
-.resource-info .r-desc {
-  font-size: 0.78rem; color: var(--text-soft);
-}
+.spinner { display:inline-block; width:20px; height:20px; border:2px solid rgba(255,255,255,0.3);
+  border-top-color:white; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:4px; vertical-align:middle; }
+@keyframes spin { to { transform:rotate(360deg); } }
 
-/* Profile */
-.profile-card {
-  background: var(--white);
-  border-radius: var(--radius);
-  border: 1px solid var(--border);
-  padding: 28px;
-}
-.profile-header {
-  display: flex; align-items: center; gap: 16px;
-  margin-bottom: 24px;
-}
-.profile-avatar {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: linear-gradient(135deg, var(--coral), var(--gold));
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.5rem; font-weight: 700; color: white;
-  flex-shrink: 0;
-}
-.profile-name {
-  font-family: var(--font-display);
-  font-size: 1.3rem; font-weight: 600;
-  color: var(--navy);
-}
-.profile-email { color: var(--text-soft); font-size: 0.85rem; }
-.profile-detail {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 14px; margin-top: 20px;
-}
-.profile-field label {
-  display: block; font-size: 0.7rem; font-weight: 600;
-  letter-spacing: 0.06em; text-transform: uppercase;
-  color: var(--text-soft); margin-bottom: 4px;
-}
-.profile-field .val {
-  font-size: 0.9rem; color: var(--navy); font-weight: 500;
-}
-
-@media (max-width: 768px) {
-  .card-grid { grid-template-columns: 1fr; }
-  .profile-detail { grid-template-columns: 1fr; }
-  .dash-body { padding: 20px 16px; }
-  .dash-tabs { overflow-x: auto; -webkit-overflow-scrolling: touch; gap: 0; }
-  .dash-tab { padding: 10px 16px; font-size: 0.8rem; white-space: nowrap; }
-  .dash-header h2 { font-size: 1.4rem; }
-  .dash-nav { padding: 0 16px; }
-  .dash-nav-inner { height: 56px; }
-  .dash-logo { font-size: 1.1rem; }
-  .dash-user span { display: none; }
-  .login-card { padding: 36px 24px; margin: 0 16px; }
-  .login-card h1 { font-size: 1.3rem; }
-  .msg-item { padding: 14px 16px; }
-  .resource-item { flex-wrap: wrap; gap: 10px; }
-  .resource-item .btn-sm { width: 100%; text-align: center; }
-  .profile-card { padding: 20px; }
-  .profile-header { flex-direction: column; text-align: center; }
-  .btn-sm { padding: 8px 14px; font-size: 0.75rem; }
-}
-
-@media (max-width: 400px) {
-  .login-logo { font-size: 1.5rem; }
-  .login-logo .mark { width: 40px; height: 40px; font-size: 1.1rem; }
-  .login-card input { font-size: 0.9rem; padding: 12px 14px; }
-  .contact-form input,
-  .contact-form select,
-  .contact-form textarea { padding: 12px 14px; font-size: 0.85rem; }
+@media (max-width:768px) {
+  .card-grid { grid-template-columns:1fr; }
+  .profile-detail { grid-template-columns:1fr; }
+  .dash-body { padding:20px 16px; }
+  .dash-tabs { overflow-x:auto; -webkit-overflow-scrolling:touch; gap:0; }
+  .dash-tab { padding:10px 16px; font-size:0.8rem; white-space:nowrap; }
+  .dash-nav { padding:0 16px; } .dash-nav-inner { height:56px; }
+  .dash-logo { font-size:1.1rem; } .dash-user span { display:none; }
+  .auth-card { padding:36px 24px; }
 }
 </style>
 </head>
 <body>
 
-<!-- ═══ LOGIN ═══ -->
-<div class="login-screen" id="loginScreen">
-  <div class="login-card">
-    <div class="login-logo">
-      <div class="mark">DB</div>
+<!-- ═══ CONFIG ═══ -->
+<script>
+// ═══ REPLACE THESE with your Supabase project credentials ═══
+const SUPABASE_URL = 'https://YOUR-PROJECT-ID.supabase.co';
+const SUPABASE_ANON_KEY = 'your-anon-key-here';
+
+let supabase = null;
+try {
+  if (SUPABASE_URL.includes('YOUR-PROJECT')) {
+    console.warn('Supabase not configured — using demo mode');
+  } else {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+} catch(e) { console.warn('Supabase init failed:', e); }
+
+const DEMO_MODE = !supabase;
+let currentPatient = null;
+</script>
+
+<!-- ═══ AUTH SCREEN ═══ -->
+<div class="auth-screen" id="authScreen">
+  <div class="auth-card">
+    <div class="auth-logo"><div class="mark">DB</div></div>
+    <h1 id="authTitle">Client Portal</h1>
+    <p class="sub" id="authSub">Sign in to access your sessions, messages, and resources</p>
+
+    <div id="loginFields">
+      <label for="loginEmail">Email</label>
+      <input type="email" id="loginEmail" placeholder="you@email.com" autocomplete="email">
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password">
+      <button onclick="handleLogin()" id="loginBtn">Sign In</button>
+      <p class="auth-error" id="authError"></p>
+      <p class="auth-toggle">Don't have an account? <a onclick="showSignup()">Create one</a></p>
     </div>
-    <h1>Client Portal</h1>
-    <p class="sub">Enter your access code to continue</p>
-    <label for="accessCode">Access Code</label>
-    <input type="password" id="accessCode" placeholder="••••••••" maxlength="16" autocomplete="off">
-    <button onclick="doLogin()">Sign In</button>
-    <p class="login-error" id="loginError">Invalid access code. Please try again or contact your counselor.</p>
-    <p class="login-help">
-      Don't have a code? <a href="index.html#contact">Contact David</a>
-    </p>
-    <a href="index.html" class="login-back">&larr; Back to DBA</a>
+
+    <div id="signupFields" style="display:none;">
+      <label for="signupName">Full Name</label>
+      <input type="text" id="signupName" placeholder="Your name" autocomplete="name">
+      <label for="signupEmail">Email</label>
+      <input type="email" id="signupEmail" placeholder="you@email.com" autocomplete="email">
+      <label for="signupPassword">Password</label>
+      <input type="password" id="signupPassword" placeholder="Create a password" autocomplete="new-password">
+      <button onclick="handleSignup()" id="signupBtn">Create Account</button>
+      <p class="auth-error" id="signupError"></p>
+      <p class="auth-toggle">Already have an account? <a onclick="showLogin()">Sign in</a></p>
+    </div>
+
+    <a href="index.html" class="auth-back">&larr; Back to DBA</a>
   </div>
 </div>
 
@@ -432,214 +210,246 @@ body {
 <div class="dashboard" id="dashboard">
   <nav class="dash-nav">
     <div class="dash-nav-inner">
-      <div class="dash-logo">
-        <div class="dmark">DB</div>
-        DBA Portal
-      </div>
+      <div class="dash-logo"><div class="dmark">DB</div>DBA Portal</div>
       <div class="dash-user">
         <div class="dash-avatar" id="userInitials">JD</div>
         <span id="userName">Patient</span>
-        <button class="dash-logout" onclick="doLogout()">Sign Out</button>
+        <button class="dash-logout" onclick="handleLogout()">Sign Out</button>
       </div>
     </div>
   </nav>
 
   <div class="dash-body">
     <div class="dash-header">
-      <h2>Welcome back, <span id="dashName">Patient</span></h2>
+      <h2>Welcome, <span id="dashName">Patient</span></h2>
       <p>Everything you need, in one place.</p>
     </div>
 
     <div class="dash-tabs">
       <button class="dash-tab active" onclick="switchTab('sessions', this)">Sessions</button>
-      <button class="dash-tab" onclick="switchTab('messages', this)">Messages <span class="tab-badge" id="msgBadge">2</span></button>
+      <button class="dash-tab" onclick="switchTab('messages', this)">Messages <span class="tab-badge" id="msgBadge" style="display:none;">0</span></button>
       <button class="dash-tab" onclick="switchTab('resources', this)">Resources</button>
       <button class="dash-tab" onclick="switchTab('profile', this)">Profile</button>
     </div>
 
-    <!-- Sessions Panel -->
     <div class="tab-panel active" id="panel-sessions">
-      <div class="card-grid">
-        <div class="card">
-          <span class="card-tag today">Today</span>
-          <h4>Individual Session</h4>
-          <div class="card-date">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
-            Thursday, 3:00 PM — 3:50 PM
-          </div>
-          <div class="card-date">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Virtual — Google Meet
-          </div>
-          <div class="card-actions">
-            <a href="#" class="btn-sm primary">Join Session</a>
-            <button class="btn-sm outline">Reschedule</button>
-          </div>
-        </div>
-        <div class="card">
-          <span class="card-tag upcoming">Next Week</span>
-          <h4>Individual Session</h4>
-          <div class="card-date">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg>
-            Thursday, July 29 — 3:00 PM
-          </div>
-          <div class="card-date">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-            Virtual — Google Meet
-          </div>
-          <div class="card-actions">
-            <button class="btn-sm outline">Reschedule</button>
-            <button class="btn-sm outline">Cancel</button>
-          </div>
-        </div>
-      </div>
+      <div id="sessionsList"><div class="empty-state"><div class="empty-icon">📅</div><h4>Loading sessions...</h4></div></div>
     </div>
-
-    <!-- Messages Panel -->
     <div class="tab-panel" id="panel-messages">
-      <div class="msg-item unread">
-        <div class="msg-from">David Rickey</div>
-        <div class="msg-preview">Hi — just checking in after our last session. I wanted to share a reflection that came up for me after we spoke...</div>
-        <div class="msg-date">Yesterday, 4:32 PM</div>
-      </div>
-      <div class="msg-item unread">
-        <div class="msg-from">David Rickey</div>
-        <div class="msg-preview">Here's that breathing exercise we discussed. Try it once in the morning and once before bed — let me know how it lands.</div>
-        <div class="msg-date">Monday, 10:15 AM</div>
-      </div>
-      <div class="msg-item">
-        <div class="msg-from">David Rickey</div>
-        <div class="msg-preview">Session confirmed for Thursday at 3:00 PM. Looking forward to continuing our conversation.</div>
-        <div class="msg-date">Last Thursday, 5:00 PM</div>
-      </div>
+      <div id="messagesList"><div class="empty-state"><div class="empty-icon">💬</div><h4>Loading messages...</h4></div></div>
     </div>
-
-    <!-- Resources Panel -->
     <div class="tab-panel" id="panel-resources">
-      <div class="resource-item">
-        <div class="resource-icon doc">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--coral)" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-        </div>
-        <div class="resource-info">
-          <div class="r-name">Grounding Techniques.pdf</div>
-          <div class="r-desc">5 simple practices for when anxiety shows up unannounced</div>
-        </div>
-        <button class="btn-sm outline">Download</button>
-      </div>
-      <div class="resource-item">
-        <div class="resource-icon video">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polygon points="6 3 20 12 6 21 6 3"/></svg>
-        </div>
-        <div class="resource-info">
-          <div class="r-name">Understanding the Inner Critic</div>
-          <div class="r-desc">Video — 12 min · David walks through where the inner critic comes from</div>
-        </div>
-        <button class="btn-sm outline">Watch</button>
-      </div>
-      <div class="resource-item">
-        <div class="resource-icon audio">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
-        </div>
-        <div class="resource-info">
-          <div class="r-name">Guided Body Scan (Audio)</div>
-          <div class="r-desc">15-minute body scan meditation for stress relief</div>
-        </div>
-        <button class="btn-sm outline">Listen</button>
-      </div>
+      <div id="resourcesList"><div class="empty-state"><div class="empty-icon">📁</div><h4>Loading resources...</h4></div></div>
     </div>
-
-    <!-- Profile Panel -->
     <div class="tab-panel" id="panel-profile">
-      <div class="profile-card">
-        <div class="profile-header">
-          <div class="profile-avatar" id="profileAvatar">JD</div>
-          <div>
-            <div class="profile-name" id="profileName">Patient Name</div>
-            <div class="profile-email" id="profileEmail">patient@email.com</div>
-          </div>
-        </div>
-        <div class="profile-detail">
-          <div class="profile-field">
-            <label>Access Code</label>
-            <div class="val" id="profileCode">••••••••</div>
-          </div>
-          <div class="profile-field">
-            <label>Next Session</label>
-            <div class="val" id="profileNext">Thursday, 3:00 PM</div>
-          </div>
-          <div class="profile-field">
-            <label>Session Type</label>
-            <div class="val" id="profileType">Virtual</div>
-          </div>
-          <div class="profile-field">
-            <label>Counselor</label>
-            <div class="val">David Rickey</div>
-          </div>
-        </div>
-      </div>
+      <div id="profileContent"><div class="empty-state"><div class="empty-icon">👤</div><h4>Loading profile...</h4></div></div>
     </div>
   </div>
 </div>
 
 <script>
-// Demo patient database (in production, this lives on a secure server)
-const patients = {
-  'DBA-DEMO-01': { name: 'Jordan Davis', email: 'jordan@example.com' },
-  'DBA-DEMO-02': { name: 'Morgan Lee', email: 'morgan@example.com' },
-};
+// ═══ AUTH ═══
+function showError(id, msg) { const el = document.getElementById(id); el.textContent = msg; el.style.display = msg ? 'block' : 'none'; }
 
-function doLogin() {
-  const code = document.getElementById('accessCode').value.trim().toUpperCase();
-  const error = document.getElementById('loginError');
-
-  if (patients[code]) {
-    const patient = patients[code];
-    localStorage.setItem('dba_patient_code', code);
-    localStorage.setItem('dba_patient_name', patient.name);
-    localStorage.setItem('dba_patient_email', patient.email);
-    showDashboard(patient);
-  } else if (code.length >= 6) {
-    // For demo: accept any code 6+ chars as "Patient"
-    const name = 'Patient';
-    const email = code.toLowerCase() + '@patient.dba.org';
-    localStorage.setItem('dba_patient_code', code);
-    localStorage.setItem('dba_patient_name', name);
-    localStorage.setItem('dba_patient_email', email);
-    showDashboard({ name, email });
-  } else {
-    error.style.display = 'block';
-  }
+function showSignup() {
+  document.getElementById('loginFields').style.display = 'none';
+  document.getElementById('signupFields').style.display = 'block';
+  document.getElementById('authTitle').textContent = 'Create Account';
+  document.getElementById('authSub').textContent = 'Join the DBA client portal';
+  showError('authError', '');
+}
+function showLogin() {
+  document.getElementById('signupFields').style.display = 'none';
+  document.getElementById('loginFields').style.display = 'block';
+  document.getElementById('authTitle').textContent = 'Client Portal';
+  document.getElementById('authSub').textContent = 'Sign in to access your sessions, messages, and resources';
+  showError('signupError', '');
 }
 
-function showDashboard(patient) {
-  document.getElementById('loginScreen').style.display = 'none';
+async function handleSignup() {
+  if (DEMO_MODE) { demoLogin(); return; }
+  const btn = document.getElementById('signupBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Creating...';
+  showError('signupError', '');
+
+  const name = document.getElementById('signupName').value.trim();
+  const email = document.getElementById('signupEmail').value.trim();
+  const password = document.getElementById('signupPassword').value;
+
+  if (!name || !email || !password) {
+    showError('signupError', 'All fields are required');
+    btn.disabled = false; btn.textContent = 'Create Account'; return;
+  }
+
+  const { data, error } = await supabase.auth.signUp({
+    email, password,
+    options: { data: { full_name: name } }
+  });
+
+  if (error) { showError('signupError', error.message); btn.disabled = false; btn.textContent = 'Create Account'; return; }
+  if (data.user) { loadDashboard(data.user); return; }
+  // Email confirmation may be required
+  document.getElementById('signupFields').style.display = 'none';
+  document.getElementById('loginFields').style.display = 'block';
+  document.getElementById('authTitle').textContent = 'Check Your Email';
+  document.getElementById('authSub').textContent = 'We sent a confirmation link. Click it, then sign in.';
+  btn.disabled = false; btn.textContent = 'Create Account';
+}
+
+async function handleLogin() {
+  if (DEMO_MODE) { demoLogin(); return; }
+  const btn = document.getElementById('loginBtn');
+  btn.disabled = true; btn.innerHTML = '<span class="spinner"></span> Signing in...';
+  showError('authError', '');
+
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+  if (error) { showError('authError', 'Invalid email or password'); btn.disabled = false; btn.textContent = 'Sign In'; return; }
+  if (data.user) { loadDashboard(data.user); }
+}
+
+async function handleLogout() {
+  if (!DEMO_MODE) await supabase.auth.signOut();
+  currentPatient = null;
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('authScreen').style.display = 'flex';
+  document.getElementById('loginEmail').value = '';
+  document.getElementById('loginPassword').value = '';
+}
+
+// ═══ DEMO MODE ═══
+function demoLogin() {
+  currentPatient = { id: 'demo', email: 'patient@demo.dba.org', name: 'Demo Patient', access_code: 'DBA-DEMO' };
+  loadDashboard(null);
+}
+
+// ═══ DASHBOARD ═══
+async function loadDashboard(user) {
+  document.getElementById('authScreen').style.display = 'none';
   document.getElementById('dashboard').style.display = 'block';
 
-  const initials = patient.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
-  document.getElementById('userInitials').textContent = initials;
-  document.getElementById('userName').textContent = patient.name;
-  document.getElementById('dashName').textContent = patient.name;
-  document.getElementById('profileAvatar').textContent = initials;
-  document.getElementById('profileName').textContent = patient.name;
-  document.getElementById('profileEmail').textContent = patient.email;
-  document.getElementById('profileCode').textContent = localStorage.getItem('dba_patient_code');
+  if (DEMO_MODE) {
+    renderDemoData();
+    return;
+  }
 
-  // Show today's date for next session
-  const now = new Date();
-  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-  document.getElementById('profileNext').textContent = days[now.getDay()] + ', 3:00 PM';
+  // Get patient record
+  const { data: patient } = await supabase.from('patients').select('*').eq('id', user.id).single();
+  currentPatient = patient || { id: user.id, email: user.email, full_name: user.user_metadata?.full_name || 'Patient' };
+
+  document.getElementById('userInitials').textContent = (currentPatient.full_name || 'P')[0].toUpperCase();
+  document.getElementById('userName').textContent = currentPatient.full_name || 'Patient';
+  document.getElementById('dashName').textContent = currentPatient.full_name || 'Patient';
+
+  // Load data
+  loadSessions();
+  loadMessages();
+  loadResources();
+  loadProfile();
 }
 
-function doLogout() {
-  localStorage.removeItem('dba_patient_code');
-  localStorage.removeItem('dba_patient_name');
-  localStorage.removeItem('dba_patient_email');
-  document.getElementById('dashboard').style.display = 'none';
-  document.getElementById('loginScreen').style.display = 'flex';
-  document.getElementById('accessCode').value = '';
-  document.getElementById('loginError').style.display = 'none';
+async function loadSessions() {
+  const container = document.getElementById('sessionsList');
+  if (DEMO_MODE) return;
+
+  const { data, error } = await supabase.from('sessions').select('*').eq('patient_id', currentPatient.id).order('scheduled_at', { ascending: true });
+
+  if (error || !data || data.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="empty-icon">📅</div><h4>No sessions yet</h4><p>When you request a session, it'll appear here.</p></div>`;
+    return;
+  }
+
+  container.innerHTML = '<div class="card-grid">' + data.map(s => {
+    const statusClass = s.status === 'confirmed' ? 'upcoming' : s.status === 'requested' ? 'today' : '';
+    const dateStr = s.scheduled_at ? new Date(s.scheduled_at).toLocaleDateString('en-US', { weekday:'long', month:'short', day:'numeric', hour:'numeric', minute:'2-digit' }) : 'To be scheduled';
+    const locStr = s.type === 'virtual' ? 'Virtual — ' + (s.meeting_link || 'Link pending') : s.location || 'Atlanta, GA';
+    return `<div class="card">
+      <span class="card-tag ${statusClass}">${s.status}</span>
+      <h4>${s.type === 'spiritual-direction' ? 'Spiritual Direction' : s.type === 'virtual' ? 'Virtual Session' : 'In-Person Session'}</h4>
+      <div class="card-date">📅 ${dateStr}</div>
+      <div class="card-date">📍 ${locStr}</div>
+      ${s.status === 'confirmed' && s.meeting_link ? `<div class="card-actions"><a href="${s.meeting_link}" target="_blank" class="btn-sm primary">Join Session</a></div>` : ''}
+    </div>`;
+  }).join('') + '</div>';
 }
 
+async function loadMessages() {
+  const container = document.getElementById('messagesList');
+  if (DEMO_MODE) return;
+
+  const { data } = await supabase.from('messages').select('*').eq('patient_id', currentPatient.id).order('created_at', { ascending: false });
+  const unread = data?.filter(m => !m.read && m.sender === 'counselor').length || 0;
+  const badge = document.getElementById('msgBadge');
+  if (unread > 0) { badge.style.display = 'inline-block'; badge.textContent = unread; }
+  else { badge.style.display = 'none'; }
+
+  if (!data || data.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="empty-icon">💬</div><h4>No messages</h4><p>Messages from David will appear here.</p></div>`;
+    return;
+  }
+  container.innerHTML = data.map(m => `<div class="msg-item${!m.read && m.sender === 'counselor' ? ' unread' : ''}">
+    <div class="msg-from">${m.sender === 'counselor' ? 'David Rickey' : 'You'}</div>
+    <div class="msg-preview">${m.content}</div>
+    <div class="msg-date">${new Date(m.created_at).toLocaleDateString('en-US', { month:'short', day:'numeric', hour:'numeric', minute:'2-digit' })}</div>
+  </div>`).join('');
+}
+
+async function loadResources() {
+  const container = document.getElementById('resourcesList');
+  if (DEMO_MODE) return;
+
+  const { data } = await supabase.from('resources').select('*').or(`shared_with.cs.{${currentPatient.id}},shared_with.eq.{}`);
+  if (!data || data.length === 0) {
+    container.innerHTML = `<div class="empty-state"><div class="empty-icon">📁</div><h4>No resources</h4><p>Shared resources from David will appear here.</p></div>`;
+    return;
+  }
+  container.innerHTML = data.map(r => `<div class="resource-item">
+    <div class="resource-icon ${r.type === 'pdf' ? 'doc' : r.type === 'video' ? 'video' : 'audio'}">${r.type === 'pdf' ? '📄' : r.type === 'video' ? '▶' : '🎵'}</div>
+    <div class="resource-info"><div class="r-name">${r.title}</div><div class="r-desc">${r.description || ''}</div></div>
+    <a href="${r.url}" target="_blank" class="btn-sm outline">${r.type === 'pdf' ? 'Download' : r.type === 'video' ? 'Watch' : 'Listen'}</a>
+  </div>`).join('');
+}
+
+function loadProfile() {
+  const container = document.getElementById('profileContent');
+  const p = currentPatient;
+  container.innerHTML = `<div class="profile-card">
+    <div class="profile-header">
+      <div class="profile-avatar">${(p.full_name || 'P')[0].toUpperCase()}</div>
+      <div><div class="profile-name">${p.full_name || 'Patient'}</div><div class="profile-email">${p.email}</div></div>
+    </div>
+    <div class="profile-detail">
+      <div class="profile-field"><label>Access Code</label><div class="val">${p.access_code || '••••••'}</div></div>
+      <div class="profile-field"><label>Counselor</label><div class="val">David Rickey</div></div>
+      <div class="profile-field"><label>Member Since</label><div class="val">${p.created_at ? new Date(p.created_at).toLocaleDateString() : '—'}</div></div>
+      <div class="profile-field"><label>Session Type</label><div class="val">Virtual / In-Person</div></div>
+    </div>
+  </div>`;
+}
+
+// ═══ DEMO DATA ═══
+function renderDemoData() {
+  document.getElementById('userInitials').textContent = 'DP';
+  document.getElementById('userName').textContent = 'Demo Patient';
+  document.getElementById('dashName').textContent = 'Demo Patient';
+  currentPatient = { id:'demo', email:'demo@patient.dba.org', full_name:'Demo Patient', access_code:'DBA-DEMO' };
+
+  document.getElementById('sessionsList').innerHTML = `<div class="card-grid">
+    <div class="card"><span class="card-tag today">Today</span><h4>Virtual Session</h4><div class="card-date">📅 Thursday, 3:00 PM</div><div class="card-date">📍 Virtual — Google Meet</div><div class="card-actions"><a href="#" class="btn-sm primary">Join Session</a></div></div>
+    <div class="card"><span class="card-tag upcoming">Next Week</span><h4>Virtual Session</h4><div class="card-date">📅 Thursday, July 29 — 3:00 PM</div><div class="card-date">📍 Virtual — Google Meet</div></div></div>`;
+
+  document.getElementById('messagesList').innerHTML = `<div class="msg-item unread"><div class="msg-from">David Rickey</div><div class="msg-preview">Hi — just checking in after our last session. I wanted to share a reflection...</div><div class="msg-date">Yesterday, 4:32 PM</div></div>
+    <div class="msg-item unread"><div class="msg-from">David Rickey</div><div class="msg-preview">Here's that breathing exercise we discussed. Try it morning and night.</div><div class="msg-date">Monday, 10:15 AM</div></div>`;
+  document.getElementById('msgBadge').style.display = 'inline-block';
+  document.getElementById('msgBadge').textContent = '2';
+
+  document.getElementById('resourcesList').innerHTML = `<div class="resource-item"><div class="resource-icon doc">📄</div><div class="resource-info"><div class="r-name">Grounding Techniques</div><div class="r-desc">5 simple practices for anxiety</div></div><button class="btn-sm outline">Download</button></div>`;
+  loadProfile();
+}
+
+// ═══ TABS ═══
 function switchTab(name, btn) {
   document.querySelectorAll('.dash-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
@@ -647,21 +457,21 @@ function switchTab(name, btn) {
   document.getElementById('panel-' + name).classList.add('active');
 }
 
-// Auto-login if returning
-(function() {
-  const code = localStorage.getItem('dba_patient_code');
-  const name = localStorage.getItem('dba_patient_name');
-  const email = localStorage.getItem('dba_patient_email');
-  if (code && name && email) {
-    showDashboard({ name, email });
+// ═══ AUTO-RESTORE ═══
+(async function() {
+  if (!DEMO_MODE) {
+    const { data } = await supabase.auth.getSession();
+    if (data?.session?.user) loadDashboard(data.session.user);
   }
 })();
 
-// Enter key login
-document.getElementById('accessCode').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') doLogin();
+// Enter key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    if (document.getElementById('signupFields').style.display !== 'none') handleSignup();
+    else handleLogin();
+  }
 });
 </script>
-
 </body>
 </html>

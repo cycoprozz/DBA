@@ -155,31 +155,33 @@ a { color:var(--coral); }
 
 <!-- ═══ CONFIG ═══ -->
 <script>
-// ═══ Supabase — load from CDN with fallback ═══
+// ═══ Supabase — load from CDN ═══
 const SUPABASE_URL = 'https://hyrtsyfhoutztgxifilt.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_YZamFO3nxh1C--omCmmS7Q_iHIkZPe4';
 
 let supabase = null;
 let DEMO_MODE = true;
+let currentPatient = null;
 
 // Load Supabase SDK
-const script = document.createElement('script');
-script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
-script.onload = function() {
-  try {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    DEMO_MODE = false;
-    console.log('Supabase connected');
-  } catch(e) {
-    console.warn('Supabase init error, using demo:', e);
-  }
+const sbScript = document.createElement('script');
+sbScript.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+sbScript.onload = function() {
+  // UMD build may need a tick to register window.supabase
+  setTimeout(function() {
+    if (window.supabase && window.supabase.createClient) {
+      supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+      DEMO_MODE = false;
+      console.log('✓ Supabase connected — live auth active');
+    } else {
+      console.warn('Supabase SDK loaded but window.supabase not found');
+    }
+  }, 100);
 };
-script.onerror = function() {
-  console.warn('Supabase CDN failed, using demo mode');
+sbScript.onerror = function() {
+  console.warn('Supabase CDN failed, staying in demo mode');
 };
-document.head.appendChild(script);
-
-let currentPatient = null;
+document.head.appendChild(sbScript);
 </script>
 
 <!-- ═══ AUTH SCREEN ═══ -->

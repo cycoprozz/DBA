@@ -1148,7 +1148,13 @@ footer .ft-links a:hover { color: var(--gold); }
   <div class="donate-box" style="text-align:center;margin-top:48px;">
     <div style="max-width:500px;margin:0 auto;background:var(--white);border-radius:20px;padding:40px 36px;border:2px solid var(--gold);box-shadow:0 12px 40px rgba(212,165,116,0.15);">
       <div style="font-family:var(--font-display);font-size:1.6rem;font-weight:600;color:var(--navy);margin-bottom:8px;">Make a Donation</div>
-      <p style="color:var(--text-soft);font-size:0.9rem;margin-bottom:24px;">100% goes to the work. Choose any method.</p>
+      <p style="color:var(--text-soft);font-size:0.9rem;margin-bottom:20px;">100% goes to the work. Choose any method.</p>
+
+      <div style="margin-bottom:20px;">
+        <p style="font-size:0.75rem;color:var(--text-soft);margin-bottom:10px;font-weight:500;">Want us to know who you are? <em style="opacity:0.6;">(completely optional)</em></p>
+        <input type="text" id="donorName" placeholder="Your name (optional)" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:0.88rem;color:var(--text);background:var(--warm-bg);margin-bottom:8px;transition:border-color 0.2s;">
+        <input type="tel" id="donorPhone" placeholder="Phone number (optional)" style="width:100%;padding:12px 16px;border:1.5px solid var(--border);border-radius:10px;font-family:var(--font-body);font-size:0.88rem;color:var(--text);background:var(--warm-bg);transition:border-color 0.2s;">
+      </div>
 
       <div style="display:flex;flex-direction:column;gap:12px;">
         <a href="https://cash.app/$DBACounseling" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;padding:16px 20px;background:#00D64F;color:white;border-radius:14px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:transform 0.2s,box-shadow 0.2s;">
@@ -1384,6 +1390,23 @@ function handleContactSubmit(e) {
   form.querySelector('button').textContent = 'Sent! ✓';
   setTimeout(() => { form.querySelector('button').textContent = 'Send Message'; }, 3000);
 }
+
+// ═══ DONATION CONTACT → SUPABASE ═══
+document.querySelectorAll('.donate-box a').forEach(link => {
+  link.addEventListener('click', function() {
+    const name = document.getElementById('donorName').value.trim();
+    const phone = document.getElementById('donorPhone').value.trim();
+    if ((name || phone) && sb) {
+      sb.from('donations').insert({
+        donor_name: name || null,
+        donor_phone: phone || null,
+        platform: this.href.includes('cash.app') ? 'cashapp' : this.href.includes('venmo') ? 'venmo' : 'paypal'
+      }).then(r => {
+        if (r.error) console.warn('Donation log error:', r.error);
+      });
+    }
+  });
+});
 </script>
 
 <!-- ═══ SESSION MODAL ═══ -->

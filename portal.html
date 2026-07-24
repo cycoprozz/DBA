@@ -7,7 +7,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <style>
 :root {
   --coral: #E07B5A; --coral-deep: #C96A4A; --coral-glow: rgba(224,123,90,0.15);
@@ -156,20 +155,30 @@ a { color:var(--coral); }
 
 <!-- ═══ CONFIG ═══ -->
 <script>
-// ═══ REPLACE THESE with your Supabase project credentials ═══
+// ═══ Supabase — load from CDN with fallback ═══
 const SUPABASE_URL = 'https://hyrtsyfhoutztgxifilt.supabase.co';
 const SUPABASE_ANON_KEY = 'sb_publishable_YZamFO3nxh1C--omCmmS7Q_iHIkZPe4';
 
 let supabase = null;
-try {
-  if (SUPABASE_URL.includes('YOUR-PROJECT')) {
-    console.warn('Supabase not configured — using demo mode');
-  } else {
-    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-  }
-} catch(e) { console.warn('Supabase init failed:', e); }
+let DEMO_MODE = true;
 
-const DEMO_MODE = !supabase;
+// Load Supabase SDK
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js';
+script.onload = function() {
+  try {
+    supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    DEMO_MODE = false;
+    console.log('Supabase connected');
+  } catch(e) {
+    console.warn('Supabase init error, using demo:', e);
+  }
+};
+script.onerror = function() {
+  console.warn('Supabase CDN failed, using demo mode');
+};
+document.head.appendChild(script);
+
 let currentPatient = null;
 </script>
 
